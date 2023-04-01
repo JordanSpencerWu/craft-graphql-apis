@@ -26,23 +26,23 @@ defmodule PlateSlate.Seeds do
     sandwiches = %Menu.Category{name: "Sandwiches"} |> Repo.insert!
 
     _rueben =
-      %Menu.Item{name: "Reuben", price: 4.50, category: sandwiches}
+      %Menu.Item{name: "Reuben", price: 4.50, category: sandwiches, description: "Description for Reuben"}
       |> Repo.insert!
 
     _croque =
-      %Menu.Item{name: "Croque Monsieur", price: 5.50, category: sandwiches}
+      %Menu.Item{name: "Croque Monsieur", price: 5.50, category: sandwiches, description: "Description for Croque Monsieur"}
       |> Repo.insert!
 
     _muffuletta =
-      %Menu.Item{name: "Muffuletta", price: 5.50, category: sandwiches}
+      %Menu.Item{name: "Muffuletta", price: 5.50, category: sandwiches, description: "Description for Muffuletta"}
       |> Repo.insert!
 
     _bahn_mi =
-      %Menu.Item{name: "Bánh mì", price: 4.50, category: sandwiches}
+      %Menu.Item{name: "Bánh mì", price: 4.50, category: sandwiches, description: "Description for Bánh mì"}
       |> Repo.insert!
 
     _vada_pav =
-      %Menu.Item{name: "Vada Pav", price: 4.50, category: sandwiches, tags: [vegetarian]}
+      %Menu.Item{name: "Vada Pav", price: 4.50, category: sandwiches, tags: [vegetarian], description: "Description for Vada Pav"}
       |> Repo.insert!
 
     #
@@ -52,15 +52,15 @@ defmodule PlateSlate.Seeds do
     sides = %Menu.Category{name: "Sides"} |> Repo.insert!
 
     _fries =
-      %Menu.Item{name: "French Fries", price: 2.50, category: sides}
+      %Menu.Item{name: "French Fries", price: 2.50, category: sides, description: "Description for French Fries"}
       |> Repo.insert!
 
     _papadum =
-      %Menu.Item{name: "Papadum", price: 1.25, category: sides}
+      %Menu.Item{name: "Papadum", price: 1.25, category: sides, description: "Description for Papadum"}
       |> Repo.insert!
 
     _pasta_salad =
-      %Menu.Item{name: "Pasta Salad", price: 2.50, category: sides}
+      %Menu.Item{name: "Pasta Salad", price: 2.50, category: sides, description: "Description for Pasta Salad"}
       |> Repo.insert!
 
     #
@@ -70,27 +70,27 @@ defmodule PlateSlate.Seeds do
     beverages = %Menu.Category{name: "Beverages"} |> Repo.insert!
 
     _water =
-      %Menu.Item{name: "Water", price: 0, category: beverages}
+      %Menu.Item{name: "Water", price: 0, category: beverages, description: "Description for Water"}
       |> Repo.insert!
 
     _soda =
-      %Menu.Item{name: "Soft Drink", price: 1.5, category: beverages}
+      %Menu.Item{name: "Soft Drink", price: 1.5, category: beverages, description: "Description for Soft Drink"}
       |> Repo.insert!
 
     _lemonade =
-      %Menu.Item{name: "Lemonade", price: 1.25, category: beverages}
+      %Menu.Item{name: "Lemonade", price: 1.25, category: beverages, description: "Description for Lemonade"}
       |> Repo.insert!
 
     _chai =
-      %Menu.Item{name: "Masala Chai", price: 1.5, category: beverages}
+      %Menu.Item{name: "Masala Chai", price: 1.5, category: beverages, description: "Description for Masala Chai"}
       |> Repo.insert!
 
     _vanilla_milkshake =
-      %Menu.Item{name: "Vanilla Milkshake", price: 3.0, category: beverages}
+      %Menu.Item{name: "Vanilla Milkshake", price: 3.0, category: beverages, description: "Description for Vanilla Milkshake"}
       |> Repo.insert!
 
     _chocolate_milkshake =
-      %Menu.Item{name: "Chocolate Milkshake", price: 3.0, category: beverages}
+      %Menu.Item{name: "Chocolate Milkshake", price: 3.0, category: beverages, description: "Description for Chocolate Milkshake"}
       |> Repo.insert!
 
     :ok
