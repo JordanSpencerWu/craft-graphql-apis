@@ -1,17 +1,11 @@
 defmodule PlateSlateWeb.Schema do
   use Absinthe.Schema
 
-  alias PlateSlateWeb.Resolvers
-
   import_types(Absinthe.Type.Custom)
+  import_types(__MODULE__.MenuTypes)
 
   query do
-    @desc "The list of available items on the menu"
-    field :menu_items, list_of(:menu_item) do
-      arg(:filter, :menu_item_filter)
-      arg(:order, type: :sort_order, default_value: :asc)
-      resolve(&Resolvers.Menu.menu_items/3)
-    end
+    import_fields(:menu_queries)
   end
 
   enum :sort_order do
@@ -19,41 +13,20 @@ defmodule PlateSlateWeb.Schema do
     value(:desc)
   end
 
-  @desc "Filtering options for the menu item list"
-  input_object :menu_item_filter do
-    @desc "Matching a name"
+  @desc "interface for search result"
+  interface :search_result do
+    @desc "name of search result"
     field :name, :string
 
-    @desc "Matching a category name"
-    field :category, :string
+    resolve_type(fn
+      %PlateSlate.Menu.Item{}, _ ->
+        :menu_item
 
-    @desc "Matching a tag"
-    field :tag, :string
+      %PlateSlate.Menu.Category{}, _ ->
+        :category
 
-    @desc "Priced above a value"
-    field :priced_above, :float
-
-    @desc "Priced below a value"
-    field :priced_below, :float
-
-    @desc "Added to the menu before this date"
-    field :added_before, :date
-
-    @desc "Added to the menu after this date"
-    field :added_after, :date
-  end
-
-  @desc "A item in a menu"
-  object :menu_item do
-    @desc "id"
-    field :id, :id
-    @desc "date of when menu item was added"
-    field :added_on, :date
-    @desc "description of menu item"
-    field :description, :string
-    @desc "name of menu item"
-    field :name, :string
-    @desc "price of menu item"
-    field :price, :decimal
+      _, _ ->
+        nil
+    end)
   end
 end
