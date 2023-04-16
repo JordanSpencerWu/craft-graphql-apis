@@ -21,6 +21,23 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     end
   end
 
+  object :menu_mutations do
+    @desc "Create a menu item"
+    field :create_menu_item, :menu_item_result do
+      @desc "Menu item input object"
+      arg(:input, non_null(:menu_item_input))
+      resolve(&Resolvers.Menu.create_item/3)
+    end
+  end
+
+  @desc "Menu item input object"
+  input_object :menu_item_input do
+    field :name, non_null(:string)
+    field :description, :string
+    field :price, non_null(:decimal)
+    field :category_id, non_null(:id)
+  end
+
   @desc "Filtering options for the menu item list"
   input_object :menu_item_filter do
     @desc "Matching a name"
@@ -71,5 +88,21 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :items, list_of(:menu_item) do
       resolve(&Resolvers.Menu.items_for_category/3)
     end
+  end
+
+  @desc "Menu item result"
+  object :menu_item_result do
+    @desc "Menu item"
+    field :menu_item, :menu_item
+    @desc "List of input error"
+    field :errors, list_of(:input_error)
+  end
+
+  @desc "An error encountered trying to persist input"
+  object :input_error do
+    @desc "Key of input error"
+    field :key, non_null(:string)
+    @desc "Message of input error"
+    field :message, non_null(:string)
   end
 end
