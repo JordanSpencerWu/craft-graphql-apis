@@ -8,6 +8,10 @@ defmodule PlateSlateWeb.Schema do
     import_fields(:menu_queries)
   end
 
+  mutation do
+    import_fields(:menu_mutations)
+  end
+
   enum :sort_order do
     value(:asc)
     value(:desc)
