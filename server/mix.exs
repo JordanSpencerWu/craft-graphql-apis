@@ -33,11 +33,13 @@ defmodule PlateSlate.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:absinthe_phoenix, "~> 2.0"},
       {:absinthe_plug, "~> 1.5"},
       {:absinthe, "~> 1.7"},
       {:ecto_sql, "~> 3.6"},
       {:jason, "~> 1.2"},
       {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix, "~> 1.7.2"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},

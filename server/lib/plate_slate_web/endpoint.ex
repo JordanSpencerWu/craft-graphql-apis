@@ -1,5 +1,6 @@
 defmodule PlateSlateWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :plate_slate
+  use Absinthe.Phoenix.Endpoint
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -12,6 +13,7 @@ defmodule PlateSlateWeb.Endpoint do
   ]
 
   # socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket "/socket", PlateSlateWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

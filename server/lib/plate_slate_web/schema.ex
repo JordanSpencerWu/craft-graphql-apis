@@ -3,6 +3,7 @@ defmodule PlateSlateWeb.Schema do
 
   import_types(Absinthe.Type.Custom)
   import_types(__MODULE__.MenuTypes)
+  import_types(__MODULE__.OrderingTypes)
 
   query do
     import_fields(:menu_queries)
@@ -10,6 +11,11 @@ defmodule PlateSlateWeb.Schema do
 
   mutation do
     import_fields(:menu_mutations)
+    import_fields(:ordering_mutations)
+  end
+
+  subscription do
+    import_fields(:ordering_subscriptions)
   end
 
   enum :sort_order do
