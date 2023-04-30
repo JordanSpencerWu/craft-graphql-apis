@@ -5,6 +5,7 @@ defmodule PlateSlate.Menu.Item do
 
   schema "items" do
     field :added_on, :date
+    field :allergy_info, {:array, :map}, default: []
     field :description, :string
     field :name, :string
     field :price, :decimal
