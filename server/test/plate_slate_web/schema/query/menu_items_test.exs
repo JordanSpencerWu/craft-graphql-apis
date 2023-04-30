@@ -8,6 +8,10 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
   @query """
   {
     menuItems {
+      allergyInfo {
+        allergen
+        severity
+      }
       description
       name
       price
@@ -24,69 +28,96 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
                  %{
                    "description" => "Description for Bánh mì",
                    "name" => "Bánh mì",
-                   "price" => "4.5"
+                   "price" => "4.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Chocolate Milkshake",
                    "name" => "Chocolate Milkshake",
-                   "price" => "3.0"
+                   "price" => "3.0",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Croque Monsieur",
                    "name" => "Croque Monsieur",
-                   "price" => "5.5"
+                   "price" => "5.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for French Fries",
                    "name" => "French Fries",
-                   "price" => "2.5"
+                   "price" => "2.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Lemonade",
                    "name" => "Lemonade",
-                   "price" => "1.25"
+                   "price" => "1.25",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Masala Chai",
                    "name" => "Masala Chai",
-                   "price" => "1.5"
+                   "price" => "1.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Muffuletta",
                    "name" => "Muffuletta",
-                   "price" => "5.5"
+                   "price" => "5.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Papadum",
                    "name" => "Papadum",
-                   "price" => "1.25"
+                   "price" => "1.25",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Pasta Salad",
                    "name" => "Pasta Salad",
-                   "price" => "2.5"
+                   "price" => "2.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Reuben",
                    "name" => "Reuben",
-                   "price" => "4.5"
+                   "price" => "4.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Soft Drink",
                    "name" => "Soft Drink",
-                   "price" => "1.5"
+                   "price" => "1.5",
+                   "allergyInfo" => []
+                 },
+                 %{
+                   "description" => nil,
+                   "name" => "Thai Salad",
+                   "price" => "3.5",
+                   "allergyInfo" => [
+                     %{"allergen" => "Peanuts", "severity" => "Contains"},
+                     %{"allergen" => "Shell Fish", "severity" => "Shared Equipment"}
+                   ]
                  },
                  %{
                    "description" => "Description for Vada Pav",
                    "name" => "Vada Pav",
-                   "price" => "4.5"
+                   "price" => "4.5",
+                   "allergyInfo" => []
                  },
                  %{
                    "description" => "Description for Vanilla Milkshake",
                    "name" => "Vanilla Milkshake",
-                   "price" => "3.0"
+                   "price" => "3.0",
+                   "allergyInfo" => []
                  },
-                 %{"description" => "Description for Water", "name" => "Water", "price" => "0"}
+                 %{
+                   "allergyInfo" => [],
+                   "description" => "Description for Water",
+                   "name" => "Water",
+                   "price" => "0"
+                 }
                ]
              }
            }

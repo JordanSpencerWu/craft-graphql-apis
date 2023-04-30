@@ -69,12 +69,22 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :id, :id
     @desc "date of when menu item was added"
     field :added_on, :date
+    @desc "list of allergy information"
+    field :allergy_info, list_of(:allergy_info)
     @desc "description of menu item"
     field :description, :string
     @desc "name of menu item"
     field :name, :string
     @desc "price of menu item"
     field :price, :decimal
+  end
+
+  @desc "A item's allergy information"
+  object :allergy_info do
+    @desc "The allergen name of item"
+    field :allergen, :string
+    @desc "Severity of item"
+    field :severity, :string
   end
 
   @desc "A category of menu items"
