@@ -3,9 +3,10 @@ defmodule PlateSlateWeb.Schema do
 
   alias PlateSlateWeb.Schema.Middleware
 
-  import_types(Absinthe.Type.Custom)
+  import_types(__MODULE__.AccountsTypes)
   import_types(__MODULE__.MenuTypes)
   import_types(__MODULE__.OrderingTypes)
+  import_types(Absinthe.Type.Custom)
 
   def middleware(middleware, field, %{identifier: :allergy_info} = object) do
     new_middleware = {Absinthe.Middleware.MapGet, to_string(field.identifier)}
@@ -21,10 +22,12 @@ defmodule PlateSlateWeb.Schema do
   end
 
   query do
+    import_fields(:accounts_queries)
     import_fields(:menu_queries)
   end
 
   mutation do
+    import_fields(:accounts_mutations)
     import_fields(:menu_mutations)
     import_fields(:ordering_mutations)
   end

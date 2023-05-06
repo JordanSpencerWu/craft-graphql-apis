@@ -1,7 +1,7 @@
 defmodule PlateSlate.Seeds do
 
   def run() do
-    alias PlateSlate.{Menu, Repo}
+    alias PlateSlate.{Accounts, Menu, Repo}
 
     #
     # TAGS
@@ -102,6 +102,20 @@ defmodule PlateSlate.Seeds do
 
     _chocolate_milkshake =
       %Menu.Item{name: "Chocolate Milkshake", price: 3.0, category: beverages, description: "Description for Chocolate Milkshake"}
+      |> Repo.insert!
+
+    #
+    # Users
+    #
+
+    _employee =
+      %Accounts.User{}
+      |> Accounts.User.changeset(%{role: "employee", name: "Becca Wilson", email: "foo@example.com", password: "abc123"})
+      |> Repo.insert!
+
+    _customer =
+      %Accounts.User{}
+      |> Accounts.User.changeset(%{role: "customer", name: "Joe Hubert", email: "bar@example.com", password: "abc123"})
       |> Repo.insert!
 
     :ok

@@ -2,6 +2,7 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
   use Absinthe.Schema.Notation
 
   alias PlateSlateWeb.Resolvers
+  alias PlateSlateWeb.Schema.Middleware
 
   object :menu_queries do
     @desc "The list of available items on the menu"
@@ -26,6 +27,7 @@ defmodule PlateSlateWeb.Schema.MenuTypes do
     field :create_menu_item, :menu_item_result do
       @desc "Menu item input object"
       arg(:input, non_null(:menu_item_input))
+      middleware(Middleware.Authorize, "employee")
       resolve(&Resolvers.Menu.create_item/3)
     end
   end

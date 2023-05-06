@@ -6,6 +6,7 @@ defmodule PlateSlate.Ordering.Order do
   alias PlateSlate.Ordering.Item
 
   schema "orders" do
+    field :customer_id, :integer
     field :customer_number, :integer, read_after_writes: true
     field :ordered_at, :utc_datetime, read_after_writes: true
     field :state, :string, read_after_writes: true
@@ -18,7 +19,7 @@ defmodule PlateSlate.Ordering.Order do
   @doc false
   def changeset(%Order{} = order, attrs) do
     order
-    |> cast(attrs, [:customer_number, :ordered_at, :state])
+    |> cast(attrs, [:customer_id, :customer_number, :ordered_at, :state])
     |> cast_embed(:items)
   end
 end
