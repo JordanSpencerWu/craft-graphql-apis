@@ -28,6 +28,11 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Configures Comeonin Ecto Password
+config :comeonin, Ecto.Password, Pbkdf2
+config :comeonin, :pbkdf2_rounds, 120_000
+config :comeonin, :pbkdf2_salt_len, 512
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
