@@ -37,6 +37,7 @@ defmodule PlateSlate.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:absinthe, "~> 1.7"},
       {:comeonin_ecto_password, "~> 3.0"},
+      {:dataloader, "~> 1.0"},
       {:ecto_sql, "~> 3.6"},
       {:jason, "~> 1.2"},
       {:pbkdf2_elixir, "~> 1.4"},
