@@ -1,6 +1,7 @@
 defmodule PlateSlateWeb.Schema do
   use Absinthe.Schema
 
+  alias PlateSlate.Menu
   alias PlateSlateWeb.Schema.Middleware
 
   import_types(__MODULE__.AccountsTypes)
@@ -8,17 +9,43 @@ defmodule PlateSlateWeb.Schema do
   import_types(__MODULE__.OrderingTypes)
   import_types(Absinthe.Type.Custom)
 
-  def middleware(middleware, field, %{identifier: :allergy_info} = object) do
-    new_middleware = {Absinthe.Middleware.MapGet, to_string(field.identifier)}
-    Absinthe.Schema.replace_default(middleware, new_middleware, field, object)
+  def middleware(middleware, field, object) do
+    middleware
+    |> apply(:errors, field, object)
+    |> apply(:get_string, field, object)
+    |> apply(:debug, field, object)
   end
 
-  def middleware(middleware, _field, %{identifier: :mutation}) do
+  defp apply(middleware, :errors, _field, %{identifier: :mutation}) do
     middleware ++ [Middleware.ChangesetErrors]
   end
 
-  def middleware(middleware, _field, _object) do
+  defp apply(_middleware, :get_string, field, %{identifier: :allergy_info}) do
+    [{Absinthe.Middleware.MapGet, to_string(field.identifier)}]
+  end
+
+  defp apply(middleware, :debug, _field, _object) do
+    if System.get_env("DEBUG") do
+      [{Middleware.Debug, :start}] ++ middleware
+    else
+      middleware
+    end
+  end
+
+  defp apply(middleware, _, _, _) do
     middleware
+  end
+
+  def context(ctx) do
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Menu, Menu.data())
+
+    Map.put(ctx, :loader, loader)
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
   end
 
   query do
